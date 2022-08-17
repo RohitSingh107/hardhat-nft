@@ -39,7 +39,7 @@ import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers"
           const txResponse = await basicNft.mintNft()
           await txResponse.wait(1)
           const count = await basicNft.getTokenCounter()
-          // console.log(count)
+          console.log(`count is ${count}`)
           assert.equal(count.toString(), "1")
         })
       })

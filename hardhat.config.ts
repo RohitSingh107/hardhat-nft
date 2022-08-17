@@ -7,8 +7,7 @@ import "@nomiclabs/hardhat-ethers"
 import "dotenv/config"
 import "@typechain/hardhat"
 import "hardhat-deploy"
-// import "@nomiclabs/hardhat-waffle"
-
+import "@nomicfoundation/hardhat-toolbox"
 dotenv.config()
 
 const config: HardhatUserConfig = {
@@ -30,7 +29,7 @@ const config: HardhatUserConfig = {
     },
   },
   solidity: {
-    compilers: [{ version: "0.8.9", settings: {} }],
+    compilers: [{ version: "0.8.9", settings: {} }, { version: "0.6.6" }],
   },
 
   mocha: {

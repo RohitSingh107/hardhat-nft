@@ -33,4 +33,4 @@ module.exports = async (hre: HardhatRuntimeEnvironment) => {
   log("-----------------------------------------")
 }
 
-module.exports.tags = ["all", "basicnft"]
+module.exports.tags = ["all", "basicnft", "main"]

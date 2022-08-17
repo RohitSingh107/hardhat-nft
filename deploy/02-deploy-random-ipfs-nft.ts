@@ -36,6 +36,7 @@ module.exports = async (hre: HardhatRuntimeEnvironment) => {
 
   let vrfCoordinatorV2Address: string | undefined
   let subsciptionId
+  // let vRFCoordinatorV2Mock: VRFCoordinatorV2Mock
 
   if (developmentChains.includes(network.name)) {
     const vRFCoordinatorV2Mock: VRFCoordinatorV2Mock = await ethers.getContract(
@@ -74,19 +75,28 @@ module.exports = async (hre: HardhatRuntimeEnvironment) => {
   ]
 
   console.log("Deploying RandomIPFSnft Contract...")
-  const raffle = await deploy("RandomIPFSnft", {
+  const randomipfs = await deploy("RandomIPFSnft", {
     from: deployer,
     args: args,
     log: true,
     waitConfirmations: networkConfig[chainId]["waitConfirmations"] || 1,
   })
 
+  // Adding Consumer to vrf
+  if (developmentChains.includes(network.name)) {
+    const vRFCoordinatorV2Mock = await ethers.getContract(
+      "VRFCoordinatorV2Mock"
+    )
+    await vRFCoordinatorV2Mock.addConsumer(subsciptionId, randomipfs.address)
+    log("Consumer is added")
+  }
+
   if (
     !developmentChains.includes(network.name) &&
     process.env.ETHERSCAN_API_KEY
   ) {
     log("Verifying...")
-    await verify(raffle.address, args)
+    await verify(randomipfs.address, args)
     log("--------------------------------------------")
   }
 }

@@ -8,6 +8,7 @@ export interface networkConfigItemInterface {
   subsciptionId?: string
   callbackGasLimit?: string
   mintFee?: string
+  ethUsdPriceFeed?: string
 }
 
 export interface networkConfigInterface {
@@ -24,6 +25,7 @@ export const networkConfig: networkConfigInterface = {
     subsciptionId: "8726",
     callbackGasLimit: "500000",
     mintFee: "10000000000000000", // 0.01 ETH
+    ethUsdPriceFeed: "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e",
   },
   31337: {
     name: "hardhat",
