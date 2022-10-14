@@ -20,10 +20,10 @@ module.exports = async (hre: HardhatRuntimeEnvironment) => {
     ethUsdPriceFeedAddress = networkConfig[chainId].ethUsdPriceFeed!
   }
 
-  const lowSVG = await fs.readFileSync("./images/dynamicNft/frown.svg", {
+  const lowSVG = fs.readFileSync("./images/dynamicNft/frown.svg", {
     encoding: "utf8",
   })
-  const highSVG = await fs.readFileSync("./images/dynamicNft/happy.svg", {
+  const highSVG = fs.readFileSync("./images/dynamicNft/happy.svg", {
     encoding: "utf8",
   })
 
